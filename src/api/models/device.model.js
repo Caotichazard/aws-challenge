@@ -1,15 +1,17 @@
 const sql = require("./db.js");
 
 // Construtor
-const Category = function (category) {
-    this.name = category.name;
+const Device = function (device) {
+    this.color = device.color;
+    this.partNumber = device.partNumber;
+    this.ID_Category = device.ID_Category;
 };
 
 //Adiciona categoria nova
-Category.create = (newCategory, result) => {
+Device.create = (newDevice, result) => {
     sql.query({
-        sql: "INSERT INTO categories SET ?", //Query a usar
-        values: [newCategory],//Valores a colocar no lugar do ?
+        sql: "INSERT INTO devices SET ?", //Query a usar
+        values: [newDevice],//Valores a colocar no lugar do ?
     },
         (err, res) => {
             if (err) {
@@ -18,16 +20,16 @@ Category.create = (newCategory, result) => {
                 return;
             }
 
-            console.log("created category: ", { id: res.insertId, ...newCategory });
-            result(null, { id: res.insertId, ...newCategory });
+            console.log("created device: ", { id: res.insertId, ...newDevice });
+            result(null, { id: res.insertId, ...newDevice });
         });
 };
 
 //Busca por id
-Category.findById = (categoryId, result) => {
+Device.findById = (deviceId, result) => {
     sql.query(
         {
-            sql: `SELECT * FROM categories WHERE ID_Category = ${categoryId}`,
+            sql: `SELECT * FROM devices WHERE id = ${deviceId}`,
         },
         (err, res) => {
             if (err) {
@@ -37,21 +39,21 @@ Category.findById = (categoryId, result) => {
             }
 
             if (res.length) {
-                console.log("found category: ", res[0]);
+                console.log("found device: ", res[0]);
                 result(null, res[0]);
                 return;
             }
 
-            // not found Category with the id
+            // not found Device with the id
             result({ kind: "not_found" }, null);
         });
 };
 
 //Busca todos
-Category.getAll = result => {
+Device.getAll = result => {
     sql.query(
         {
-            sql: "SELECT * FROM categories",
+            sql: "SELECT * FROM devices",
         },
         (err, res) => {
             if (err) {
@@ -60,16 +62,16 @@ Category.getAll = result => {
                 return;
             }
 
-            console.log("category: ", res);
+            console.log("device: ", res);
             result(null, res);
         });
 };
 
 //Remove por id
-Category.remove = (id, result) => {
+Device.remove = (id, result) => {
     sql.query(
         {
-            sql: "DELETE FROM categories WHERE ID_Category = ?",
+            sql: "DELETE FROM devices WHERE id = ?",
             values: [id],
         },
         (err, res) => {
@@ -80,21 +82,21 @@ Category.remove = (id, result) => {
             }
 
             if (res.affectedRows == 0) {
-                // not found Category with the id
+                // not found Device with the id
                 result({ kind: "not_found" }, null);
                 return;
             }
 
-            console.log("deleted categories with id: ", id);
+            console.log("deleted device with id: ", id);
             result(null, res);
         });
 };
 
 //Remove todos
-Category.removeAll = result => {
+Device.removeAll = result => {
     sql.query(
         {
-            sql: "DELETE FROM categories",
+            sql: "DELETE FROM devices",
         },
         (err, res) => {
             if (err) {
@@ -103,9 +105,9 @@ Category.removeAll = result => {
                 return;
             }
 
-            console.log(`deleted ${res.affectedRows} category`);
+            console.log(`deleted ${res.affectedRows} device`);
             result(null, res);
         });
 };
 
-module.exports = Category;
+module.exports = Device;
