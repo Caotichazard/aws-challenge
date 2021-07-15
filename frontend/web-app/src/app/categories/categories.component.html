@@ -1,0 +1,21 @@
+<div>
+    <ul>
+        <li *ngFor="let category of categories">
+            <div>
+                <h1>{{category.name}}</h1>
+                <h1>{{category.ID_Category}}</h1>
+                <button (click)="delete(category)">Delete me</button>
+            </div>
+
+        </li>
+    </ul>
+    <div>
+        <label for="new-category">Category name: </label>
+        <input id="new-category" #categoryName />
+
+
+        <button class="add-button" (click)="add(categoryName.value); categoryName.value=''">
+            Add category
+        </button>
+    </div>
+</div>
