@@ -37,14 +37,14 @@ exports.create = (req, res) => {
             });
         }
 
-        if(req.body.partNum){
-            if(!Number.isInteger(req.body.partNum)){
+        if(req.body.partNumber){
+            if(!Number.isInteger(req.body.partNumber)){
                 flag = 1;
                 res.status(400).send({
-                    message: "Field partNum must be a number!" //pode ser vazio não
+                    message: "Field partNum must be a number!" + req.body //pode ser vazio não
                 });
             }else{
-                if(req.body.partNum < 0){
+                if(req.body.partNumber < 0){
                     flag = 1;
                     res.status(400).send({
                         message: "Field partNum must be a positive number!" //pode ser vazio não
@@ -72,7 +72,7 @@ exports.create = (req, res) => {
     // Cria uma categoria
         const device = new Device({
             color: req.body.color,
-            partNumber: req.body.partNum,
+            partNumber: req.body.partNumber,
             ID_Category: req.body.ID_Category
         });
 

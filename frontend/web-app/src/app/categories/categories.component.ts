@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../category';
 import { CategoryService } from '../category.service';
 
@@ -12,12 +13,38 @@ import { CategoryService } from '../category.service';
 export class CategoriesComponent implements OnInit {
   categories : Category[] = [];
 
+  categoryForm = new FormGroup({
+    name: new FormControl('',),
+  })
+
   //Contrutor injetando o serviço das categorias
   constructor(private categoryService :CategoryService) { }
   
   //quando o componente estiver pronto, utiliza a função getCategories para obter a lista de categorias
   ngOnInit(): void {
     this.getCategories();
+    this.categoryForm = new FormGroup({
+      name : new FormControl(null,
+        [
+          Validators.required,
+          Validators.maxLength(128),
+          
+        ]
+      )
+    })
+  }
+
+  get name() { return this.categoryForm.get('name');}
+
+  onSubmit() {
+    // TODO: Use EventEmitter with form value
+    console.log(this.categoryForm.value);
+    var name = this.categoryForm.value.name;
+    if (!name) { return; }
+    this.categoryService.addCategory({ name } as Category)
+      .subscribe();
+
+      this.getCategories();
   }
 
   //Obtem todas as categorias presentes na DB

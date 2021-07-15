@@ -1,1 +1,59 @@
-<p>devices works!</p>
+<div>
+    <ul>
+        <li *ngFor="let device of devices">
+            <div>
+                <h1>{{device.ID_Device}}</h1>
+                <h1>{{device.partNumber}}</h1>
+                <h1>{{device.color}}</h1>
+                <h1>{{device.ID_Category}}</h1>
+                <button (click)="delete(device)">Delete me</button>
+            </div>
+
+        </li>
+    </ul>
+    <div>
+
+
+        <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
+
+            <label for="device-color">Color: </label>
+            <input id="device-color" type="text" formControlName="color" required maxlength="16">
+            <div *ngIf="color?.invalid && (color?.dirty || color?.touched)" class="alert alert-danger">
+
+                <div *ngIf="color?.errors?.required">
+                    Color is required.
+                </div>
+                <div *ngIf="color?.errors?.maxlength">
+                    Color must be at 16 characters long or less.
+                </div>
+                
+            </div>
+
+            <label for="device-partNumber">Part Number: </label>
+            <input id="device-partNumber" type="text" formControlName="partNumber" required>
+            <div *ngIf="partNumber?.invalid && (partNumber?.dirty || partNumber?.touched)" class="alert alert-danger">
+
+                <div *ngIf="partNumber?.errors?.required">
+                    Part number is required.
+                </div>
+            </div>
+
+            <label for="device-category">Device category: </label>
+            <select formControlName="ID_Category" required>
+                <option *ngFor="let category of categories" value={{category.ID_Category}}>
+                    {{category.name}}
+                </option>
+            </select>
+            <div *ngIf="ID_Category?.invalid && (ID_Category?.dirty || ID_Category?.touched)" class="alert alert-danger">
+
+                <div *ngIf="ID_Category?.errors?.required">
+                    Category is required.
+                </div>
+            </div>
+            <p>Complete the form to enable button.</p>
+            <button type="submit" [disabled]="!deviceForm.valid">Submit</button>
+
+        </form>
+
+    </div>
+</div>

@@ -10,12 +10,21 @@
         </li>
     </ul>
     <div>
-        <label for="new-category">Category name: </label>
-        <input id="new-category" #categoryName />
+        <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+            <label for="category-name">Name: </label>
+            <input id="category-name" type="text" formControlName="name" required maxlength="128">
+            <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">
 
-
-        <button class="add-button" (click)="add(categoryName.value); categoryName.value=''">
-            Add category
-        </button>
+                <div *ngIf="name?.errors?.required">
+                    Name is required.
+                </div>
+                <div *ngIf="name?.errors?.maxlength">
+                    Name can be up t0 128 characters long.
+                </div>
+                
+            </div>
+            <p>Complete the form to enable button.</p>
+            <button type="submit" [disabled]="!categoryForm.valid">Submit</button>
+        </form>
     </div>
 </div>

@@ -75,7 +75,12 @@ Category.remove = (id, result) => {
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
-                result(null, err);
+                if(err.errno === 1451){
+                    result({ kind: "is_referenced" }, null);
+                    return
+                }
+                
+                result(err, null);
                 return;
             }
 

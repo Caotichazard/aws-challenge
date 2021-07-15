@@ -29,7 +29,7 @@ Device.create = (newDevice, result) => {
 Device.findById = (deviceId, result) => {
     sql.query(
         {
-            sql: `SELECT * FROM devices WHERE id = ${deviceId}`,
+            sql: `SELECT * FROM devices WHERE ID_Device = ${deviceId}`,
         },
         (err, res) => {
             if (err) {
@@ -71,7 +71,7 @@ Device.getAll = result => {
 Device.remove = (id, result) => {
     sql.query(
         {
-            sql: "DELETE FROM devices WHERE id = ?",
+            sql: "DELETE FROM devices WHERE ID_Device = ?",
             values: [id],
         },
         (err, res) => {

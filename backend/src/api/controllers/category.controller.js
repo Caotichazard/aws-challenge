@@ -74,6 +74,10 @@ exports.deleteById = (req, res) => {
                 res.status(404).send({
                     message: `Not found Category with id ${req.params.categoryId}.`
                 });
+            }else if(err.kind === "is_referenced"){
+                res.status(500).send({
+                    message: "Could not delete Category with id " + req.params.categoryId + " because it's referenced by one or more devices, please delete all devices with category before deleting the category"
+                });
             } else {
                 res.status(500).send({
                     message: "Could not delete Category with id " + req.params.categoryId
