@@ -1,5 +1,17 @@
-<H1>{{title}}</H1>
-<app-devices></app-devices>
-<h1>-----------------------------------------</h1>
-<app-categories></app-categories>
-<app-messages></app-messages>
+<div class="main">
+    <div class="menu-bar">
+        <H1>{{current}}</H1>
+        
+        <button (click)="change()">Switch screen</button>
+    </div>
+    <div class="content">
+        <div *ngIf="current === 'devices'">
+            <app-devices></app-devices>
+        </div>
+        <div *ngIf="current === 'categories'">
+            <app-categories></app-categories>
+        </div>
+    </div>
+    
+</div>
+<!-- <app-messages></app-messages> -->

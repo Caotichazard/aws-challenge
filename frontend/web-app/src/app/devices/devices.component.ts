@@ -55,6 +55,17 @@ export class DevicesComponent implements OnInit {
   get partNumber() { return this.deviceForm.get('partNumber'); }
   get ID_Category() { return this.deviceForm.get('ID_Category'); }
 
+
+  categoryName(catId : number) : string{
+    var catName = '';
+    this.categories.forEach((element) => {
+      if (element.ID_Category === catId) {
+        catName = element.name;
+      }
+    })
+    return catName;
+  }
+
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.log(this.deviceForm.value);
@@ -85,6 +96,7 @@ export class DevicesComponent implements OnInit {
   delete(device : Device){
     //this.devices = this.devices.filter(c => c !== device);
     console.log(this.deviceService.deleteDevice(device.ID_Device).subscribe());
+    this.getDevices();
   }
 
 

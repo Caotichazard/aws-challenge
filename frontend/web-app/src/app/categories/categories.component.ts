@@ -58,8 +58,9 @@ export class CategoriesComponent implements OnInit {
   // Ao ser pressionado o botão de uma categoria para deletala, seleciona ela, obtem ela, remove ela do array atual
   // de categorias e então utiliza o serviço para remover ela na DB.
   delete(category : Category){
-    this.categories = this.categories.filter(c => c !== category);
+    //this.categories = this.categories.filter(c => c !== category);
     this.categoryService.deleteCategory(category.ID_Category).subscribe();
+    this.getCategories();
   }
 
 

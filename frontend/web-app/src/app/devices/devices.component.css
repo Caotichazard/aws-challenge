@@ -1,0 +1,44 @@
+.device-list{
+    
+    display: grid;
+
+    max-height: 100%;
+
+    column-gap: 0.25rem;
+    row-gap: 0.25rem;
+    
+    margin: 0;
+    padding: 0.5rem;
+    /* background-color: chartreuse; */
+      
+}
+
+.device-list-item{
+    display: flex;
+    min-width: max-content;
+    justify-content: space-between;
+    align-content: flex-start;
+    background-color: bisque;
+
+    padding: 0.5rem;
+}
+.device-color{
+    width:  16rem;
+    /* background-color: brown; */
+}
+.device-id{
+    width: 8rem;
+    /* background-color: burlywood; */
+}
+.device-partNumber{
+    width: 8rem;
+    /* background-color: cadetblue; */
+}
+.device-category{
+    width: 24rem;
+    /* background-color:coral; */
+}
+.device-delete{
+    width: 6rem;
+    /* background-color: darkblue; */
+}

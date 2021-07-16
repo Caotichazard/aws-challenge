@@ -1,16 +1,25 @@
 <div>
-    <ul>
-        <li *ngFor="let device of devices">
-            <div>
-                <h1>{{device.ID_Device}}</h1>
-                <h1>{{device.partNumber}}</h1>
-                <h1>{{device.color}}</h1>
-                <h1>{{device.ID_Category}}</h1>
-                <button (click)="delete(device)">Delete me</button>
+    <div class='device-list'>
+        
+            <div class='device-list-item'>
+                <h2 class="device-id">Device ID</h2>
+                <h2 class="device-partNumber">part Number</h2>
+                <h2 class="device-color">Device Color</h2>
+                <h2 class="device-category">Category name</h2>
+                <h2 class="device-delete">Delete?</h2>
             </div>
 
-        </li>
-    </ul>
+        
+            <div *ngFor="let device of devices" class='device-list-item'>
+                <span class="device-id">{{device.ID_Device}}</span>
+                <span class="device-partNumber">{{device.partNumber}}</span>
+                <span class="device-color">{{device.color}}</span>
+                <span class="device-category">{{categoryName(device.ID_Category)}}</span>
+                <button (click)="delete(device)" class="device-delete">Delete me</button>
+            </div>
+
+        
+    </div>
     <div>
 
 
