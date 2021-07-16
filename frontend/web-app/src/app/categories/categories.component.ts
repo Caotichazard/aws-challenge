@@ -37,7 +37,7 @@ export class CategoriesComponent implements OnInit {
   get name() { return this.categoryForm.get('name');}
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
+    
     console.log(this.categoryForm.value);
     var name = this.categoryForm.value.name;
     if (!name) { return; }

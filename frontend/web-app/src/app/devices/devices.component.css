@@ -9,8 +9,20 @@
     
     margin: 0;
     padding: 0.5rem;
+
+    overflow-x: scroll;
     /* background-color: chartreuse; */
       
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.device-list::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.device-list {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .device-list-item{
@@ -44,14 +56,15 @@
 }
 
 .device-form{
-    display: grid;
-    grid-auto-flow: column;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
     
 
     align-items: center;
     justify-content: space-around;
     padding: 0.5rem;
-    height: 5rem;
+    
     background-color: #E2D686;
 }
 
