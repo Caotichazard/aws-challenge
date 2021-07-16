@@ -1,16 +1,8 @@
 <div>
-    <ul>
-        <li *ngFor="let category of categories">
-            <div>
-                <h1>{{category.name}}</h1>
-                <h1>{{category.ID_Category}}</h1>
-                <button (click)="delete(category)">Delete me</button>
-            </div>
-
-        </li>
-    </ul>
     <div>
-        <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+        
+        <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" class="category-form">
+            <span>Add a new category:</span>
             <label for="category-name">Name: </label>
             <input id="category-name" type="text" formControlName="name" required maxlength="128">
             <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">
@@ -27,4 +19,18 @@
             <button type="submit" [disabled]="!categoryForm.valid">Submit</button>
         </form>
     </div>
+    <div class="category-list">
+        <div class="category-list-item">
+            <h2>ID</h2>
+            <h2>Name</h2>
+            <h2>Delete?</h2>
+        </div>
+        <div *ngFor="let category of categories" class="category-list-item">
+            <span>{{category.ID_Category}}</span>
+            <span>{{category.name}}</span>
+            <button (click)="delete(category)">Delete me</button>
+        </div>
+    </div>
+
+    
 </div>

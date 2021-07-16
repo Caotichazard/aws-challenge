@@ -1,68 +1,85 @@
 <div>
-    <div class='device-list'>
-        
-            <div class='device-list-item'>
-                <h2 class="device-id">Device ID</h2>
-                <h2 class="device-partNumber">part Number</h2>
-                <h2 class="device-color">Device Color</h2>
-                <h2 class="device-category">Category name</h2>
-                <h2 class="device-delete">Delete?</h2>
-            </div>
-
-        
-            <div *ngFor="let device of devices" class='device-list-item'>
-                <span class="device-id">{{device.ID_Device}}</span>
-                <span class="device-partNumber">{{device.partNumber}}</span>
-                <span class="device-color">{{device.color}}</span>
-                <span class="device-category">{{categoryName(device.ID_Category)}}</span>
-                <button (click)="delete(device)" class="device-delete">Delete me</button>
-            </div>
-
-        
-    </div>
     <div>
 
 
-        <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()" class="device-form">
+            <span>Add a device:</span>
+            <div>
+                <label for="device-color">Color: </label>
+                <input id="device-color" type="text" formControlName="color" required maxlength="16">
+                <div *ngIf="color?.invalid && (color?.dirty || color?.touched)" class="alert alert-danger">
 
-            <label for="device-color">Color: </label>
-            <input id="device-color" type="text" formControlName="color" required maxlength="16">
-            <div *ngIf="color?.invalid && (color?.dirty || color?.touched)" class="alert alert-danger">
+                    <div *ngIf="color?.errors?.required">
+                        Color is required.
+                    </div>
+                    <div *ngIf="color?.errors?.maxlength">
+                        Color must be at 16 characters long or less.
+                    </div>
+                    <div *ngIf="this.deviceForm.controls.color.errors?.pattern">
+                        Color must be only letters.
+                    </div>
 
-                <div *ngIf="color?.errors?.required">
-                    Color is required.
-                </div>
-                <div *ngIf="color?.errors?.maxlength">
-                    Color must be at 16 characters long or less.
-                </div>
-                
-            </div>
-
-            <label for="device-partNumber">Part Number: </label>
-            <input id="device-partNumber" type="text" formControlName="partNumber" required>
-            <div *ngIf="partNumber?.invalid && (partNumber?.dirty || partNumber?.touched)" class="alert alert-danger">
-
-                <div *ngIf="partNumber?.errors?.required">
-                    Part number is required.
                 </div>
             </div>
 
-            <label for="device-category">Device category: </label>
-            <select formControlName="ID_Category" required>
-                <option *ngFor="let category of categories" value={{category.ID_Category}}>
-                    {{category.name}}
-                </option>
-            </select>
-            <div *ngIf="ID_Category?.invalid && (ID_Category?.dirty || ID_Category?.touched)" class="alert alert-danger">
+            <div>
+                <label for="device-partNumber">Part Number: </label>
+                <input id="device-partNumber" type="text" formControlName="partNumber" required>
+                <div *ngIf="partNumber?.invalid && (partNumber?.dirty || partNumber?.touched)"
+                    class="alert alert-danger">
 
-                <div *ngIf="ID_Category?.errors?.required">
-                    Category is required.
+                    <div *ngIf="partNumber?.errors?.required">
+                        Part number is required.
+                    </div>
+                    <div *ngIf="this.deviceForm.controls.partNumber.errors?.pattern">
+                        Part number must be a positive number.
+                    </div>
+
                 </div>
             </div>
-            <p>Complete the form to enable button.</p>
-            <button type="submit" [disabled]="!deviceForm.valid">Submit</button>
 
+            <div>
+                <label for="device-category">Device category: </label>
+                <select formControlName="ID_Category" required>
+                    <option *ngFor="let category of categories" value={{category.ID_Category}}>
+                        {{category.name}}
+                    </option>
+                </select>
+                <div *ngIf="ID_Category?.invalid && (ID_Category?.dirty || ID_Category?.touched)"
+                    class="alert alert-danger">
+
+                    <div *ngIf="ID_Category?.errors?.required">
+                        Category is required.
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p >Complete the form to enable button.</p>
+                <button type="submit" [disabled]="!deviceForm.valid">Submit</button>
+            </div>
         </form>
 
     </div>
+    <div class='device-list'>
+
+        <div class='device-list-item'>
+            <h2 class="device-id">Device ID</h2>
+            <h2 class="device-partNumber">part Number</h2>
+            <h2 class="device-color">Device Color</h2>
+            <h2 class="device-category">Category name</h2>
+            <h2 class="device-delete">Delete?</h2>
+        </div>
+
+
+        <div *ngFor="let device of devices" class='device-list-item'>
+            <span class="device-id">{{device.ID_Device}}</span>
+            <span class="device-partNumber">{{device.partNumber}}</span>
+            <span class="device-color">{{device.color}}</span>
+            <span class="device-category">{{categoryName(device.ID_Category)}}</span>
+            <button (click)="delete(device)" class="device-delete">Delete me</button>
+        </div>
+
+
+    </div>
+
 </div>

@@ -1,0 +1,50 @@
+.category-list{
+    
+    display: grid;
+
+    max-height: 100%;
+
+    column-gap: 0.25rem;
+    row-gap: 0.25rem;
+    
+    margin: 0;
+    padding: 0.5rem;
+    /* background-color: chartreuse; */
+      
+}
+
+.category-list-item{
+    display: flex;
+    min-width: max-content;
+    justify-content: space-between;
+    align-content: flex-start;
+    background-color: #D4E6B5;
+
+    padding: 0.5rem;
+}
+
+.category-id{
+    width: 8rem;
+    /* background-color: burlywood; */
+}
+.category-name{
+    width: 8rem;
+}
+
+.category-delete{
+    width: 6rem;
+    /* background-color: darkblue; */
+}
+
+.category-form{
+    display: grid;
+    grid-auto-flow: column;
+    
+
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5rem;
+    height: 5rem;
+    background-color: #E2D686;
+}
+

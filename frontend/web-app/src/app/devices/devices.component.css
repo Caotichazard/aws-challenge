@@ -18,7 +18,7 @@
     min-width: max-content;
     justify-content: space-between;
     align-content: flex-start;
-    background-color: bisque;
+    background-color: #D4E6B5;
 
     padding: 0.5rem;
 }
@@ -42,3 +42,16 @@
     width: 6rem;
     /* background-color: darkblue; */
 }
+
+.device-form{
+    display: grid;
+    grid-auto-flow: column;
+    
+
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5rem;
+    height: 5rem;
+    background-color: #E2D686;
+}
+
