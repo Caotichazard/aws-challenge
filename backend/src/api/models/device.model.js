@@ -58,7 +58,7 @@ Device.getAll = result => {
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
-                result(null, err);
+                result(err, null);
                 return;
             }
 
@@ -77,7 +77,7 @@ Device.remove = (id, result) => {
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
-                result(null, err);
+                result(err, null);
                 return;
             }
 
@@ -101,7 +101,7 @@ Device.removeAll = result => {
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
-                result(null, err);
+                result(err , null);
                 return;
             }
 

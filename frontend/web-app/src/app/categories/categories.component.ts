@@ -13,6 +13,7 @@ import { CategoryService } from '../category.service';
 export class CategoriesComponent implements OnInit {
   categories : Category[] = [];
 
+  //Controlador para validação de dados ao adicionar uma categoria
   categoryForm = new FormGroup({
     name: new FormControl('',),
   })
@@ -34,8 +35,10 @@ export class CategoriesComponent implements OnInit {
     })
   }
 
+  //Getter do atributo do formulário
   get name() { return this.categoryForm.get('name');}
 
+  //Com o formulario completo, adiciona a nova categoria na DB
   onSubmit() {
     
     console.log(this.categoryForm.value);

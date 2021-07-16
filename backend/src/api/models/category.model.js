@@ -56,7 +56,7 @@ Category.getAll = result => {
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
-                result(null, err);
+                result(err, null);
                 return;
             }
 
@@ -75,6 +75,7 @@ Category.remove = (id, result) => {
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
+                //Caso essa categoria seja referenciada em um dispositivo
                 if(err.errno === 1451){
                     result({ kind: "is_referenced" }, null);
                     return
@@ -104,7 +105,7 @@ Category.removeAll = result => {
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
-                result(null, err);
+                result(err, null);
                 return;
             }
 

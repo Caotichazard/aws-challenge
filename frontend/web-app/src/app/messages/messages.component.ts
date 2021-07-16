@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../message.service';
-
+//Componente para exibir mensagens de erro
+//Optei por deixar apenas um esqueleto aqui por falta de tempo
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',

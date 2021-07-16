@@ -11,6 +11,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./devices.component.css']
 })
 export class DevicesComponent implements OnInit {
+
+  //Controlador para validação de dados ao adicionar um dispositivo
   deviceForm = new FormGroup({
     color: new FormControl(''),
     partNumber: new FormControl(''),
@@ -50,12 +52,14 @@ export class DevicesComponent implements OnInit {
     });
   }
 
+  //Getters para atributos do Form
   get color() { return this.deviceForm.get('color'); }
 
   get partNumber() { return this.deviceForm.get('partNumber'); }
   get ID_Category() { return this.deviceForm.get('ID_Category'); }
 
 
+  //Função auxiliar para substituit o id da categoria pelo nome da mesma na tabela
   categoryName(catId : number) : string{
     var catName = '';
     this.categories.forEach((element) => {
@@ -66,6 +70,7 @@ export class DevicesComponent implements OnInit {
     return catName;
   }
 
+  //Com o formulario preenchido, adiciona o elemento novo a DB
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.log(this.deviceForm.value);
